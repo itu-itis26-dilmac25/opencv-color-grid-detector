@@ -45,5 +45,6 @@ Uygulamayı kapatmak için `q` tuşuna basın.
 Grid hücreleri soldan sağa ve yukarıdan aşağıya numaralandırılır:
 
 | 1 | 2 | 3 |
+|---|---|---|
 | 4 | 5 | 6 |
 | 7 | 8 | 9 |
