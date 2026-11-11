@@ -23,10 +23,12 @@ while True:
         upper_green = (85, 255, 255)
 
         mask = cv.inRange (hsv, lower_green, upper_green)
-        cv.imshow ("Mask", mask)
+        #cv.imshow ("Mask", mask)
 
         #kontur bulma ve kordinat tespiti
         contours, hierarchy = cv.findContours (mask, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
+
+        message = "Kare Aranıyor"
 
         if contours: 
             largest_contour = max (contours, key = cv.contourArea)
@@ -44,6 +46,16 @@ while True:
                 cv.rectangle (frame, (x,y), (x + w, y + h), (0, 0, 255), 2)
 
                 cv.putText (frame, f"Center: ({cx}, {cy})", (cx + 10, cy - 10), cv.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 255), 2)
+
+                #hücre belirleme
+                col = min(cx * 3 // width, 2)
+                row = min(cy * 3 // height, 2)
+
+                cell_no = row * 3 + col + 1
+
+                message = f"Hücre: {cell_no}"
+
+        cv.putText (frame, message, (20, 40), cv.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 255), 2)
 
         cv.imshow('video', frame)
         if cv.waitKey(20) & 0xFF==ord('d'):
